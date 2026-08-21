@@ -98,11 +98,35 @@ This project addresses these problems by combining structured extraction, determ
                            v
                  Recruiter Assistant
 
-                           +
-                           |
-                           v
-                     Remotive API
-                           |
-                           v
-                           
-                   Real Job Listings
+                            +
+                            |
+                            v
+                      Remotive API
+                            |
+                            v
+                    Real Job Listings
+```
+
+Detailed technical breakdown available in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+---
+
+## Application Screenshots
+
+### 1. Resume & Profile Extraction
+![Resume Import](screenshots/import.png)
+
+### 2. Candidate Profiles & Extracted Entity Directory
+![Candidates Directory](screenshots/candidate.png)
+
+### 3. Job Profiles & Mandatories
+![Jobs Directory](screenshots/jobs.png)
+
+### 4. Deterministic Match Scoring & Hard-Gap Breakdown
+![Job Matching](screenshots/job-matching.png)
+
+### 5. Recruiter Intelligence Assistant (RAG + Local Ollama)
+![Recruiter Assistant](screenshots/assistant.png)
+
+### 6. Grounded Evidence Citations & Source Verification
+![Evidence Citations](screenshots/evidence.png)
