@@ -108,6 +108,7 @@ This project addresses these problems by combining structured extraction, determ
 ```
 
 Detailed technical breakdown available in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+Empirical proof of local Ollama (Llama 3 / Llama 3:8B) integration available in [`docs/PROOF_OF_OLLAMA_INTEGRATION.md`](docs/PROOF_OF_OLLAMA_INTEGRATION.md).
 
 ---
 
