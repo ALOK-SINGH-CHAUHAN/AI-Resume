@@ -38,12 +38,34 @@ interface ChatMessage {
 
 function cleanPrimaryAnswer(text: string): string {
   if (!text) return "";
-  let clean = text
-    .replace(/###\s*Deterministic Analysis[^\n]*/gi, "")
-    .replace(/###\s*Retrieved Resume & Job Evidence:?/gi, "")
-    .replace(/####\s*Retrieved Resume & Job Evidence:?/gi, "")
-    .replace(/Retrieved Source Evidence Citations:?/gi, "")
-    .replace(/DETERMINISTIC MATCH RESULT[^\n]*/gi, "")
+  
+  // Split at common headers that introduce raw source chunks or debug dumps
+  const splitPatterns = [
+    /##?\s*Deterministic/gi,
+    /##?\s*Retrieved/gi,
+    /##?\s*Evidence/gi,
+    /##?\s*Sources/gi,
+    /RETRIEVED SOURCE EVIDENCE/gi,
+    /DETERMINISTIC MATCH GROUND TRUTH/gi,
+    /DETERMINISTIC MATCH RESULT/gi,
+    /Source Evidence:/gi,
+    /Retrieved Source Evidence:/gi,
+    /\n\s*\[1\]\s+Source:/gi,
+    /\n\s*\[1\]\s+Resume/gi,
+    /\n\s*\[1\]\s+Job/gi,
+    /\n\s*\*\*\[1\]\*\*/gi,
+    /\bSource Citations:/gi
+  ];
+  
+  let primary = text;
+  for (const pattern of splitPatterns) {
+    const parts = primary.split(pattern);
+    if (parts.length > 0) {
+      primary = parts[0];
+    }
+  }
+  
+  let clean = primary
     .replace(/\\#/g, "#")
     .replace(/\\\*/g, "*")
     .replace(/\\_/g, "_")

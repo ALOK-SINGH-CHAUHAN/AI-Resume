@@ -27,6 +27,10 @@ body {
   background-color: var(--color-drafting-gray);
 }
 
+.bg-ink {
+  background-color: var(--color-graphite-ink);
+}
+
 .bg-marble {
   background-color: var(--color-marble);
 }
