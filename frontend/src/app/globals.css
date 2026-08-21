@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --color-graphite-ink: #1b1b1b;
+  --color-marble: #ffffff;
+  --color-drafting-gray: #eaeaea;
+  --color-steel: #60646c;
+  --color-ash: #7c7c7c;
+  --color-hairline: #e0e1e6;
+  --color-mint-signal: #00f2e6;
+  --color-moss: #8dc63f;
+  --color-sky: #00b9f1;
+  --gradient-forest-to-deep: linear-gradient(89.97deg, rgb(25, 160, 95) 0.02%, rgb(13, 127, 140) 123.85%);
+  --shadow-lg: rgba(0, 0, 0, 0.15) 0px 4px 20px 0px;
+}
+
+body {
+  background-color: var(--color-drafting-gray);
+  color: var(--color-graphite-ink);
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Custom Grafbase Utility Classes */
+.bg-canvas {
+  background-color: var(--color-drafting-gray);
+}
+
+.bg-marble {
+  background-color: var(--color-marble);
+}
+
+.text-ink {
+  color: var(--color-graphite-ink);
+}
+
+.text-steel {
+  color: var(--color-steel);
+}
+
+.text-ash {
+  color: var(--color-ash);
+}
+
+.border-hairline {
+  border-color: var(--color-hairline);
+}
+
+.banner-gradient {
+  background: var(--gradient-forest-to-deep);
+}
+
+.card-grafbase {
+  background-color: var(--color-marble);
+  border: 1px solid var(--color-hairline);
+  border-radius: 20px;
+}
+
+.btn-primary {
+  background-color: var(--color-graphite-ink);
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 500;
+  font-size: 14px;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.btn-ghost {
+  background-color: #ffffff;
+  color: var(--color-graphite-ink);
+  border: 1px solid var(--color-hairline);
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-ghost:hover {
+  background-color: #f7f7f8;
+}
+
+.btn-pill {
+  background-color: #ffffff;
+  color: var(--color-graphite-ink);
+  border: 1px solid var(--color-hairline);
+  border-radius: 40px;
+  padding: 6px 16px;
+  font-weight: 500;
+  font-size: 13px;
+  transition: all 0.15s ease-in-out;
+}
+
+.btn-pill:hover {
+  background-color: #f7f7f8;
+}
+
+.badge-mint {
+  background-color: rgba(0, 242, 230, 0.12);
+  color: #008780;
+  border: 1px solid rgba(0, 242, 230, 0.3);
+}
+
+.badge-moss {
+  background-color: rgba(141, 198, 63, 0.12);
+  color: #55801c;
+  border: 1px solid rgba(141, 198, 63, 0.3);
+}
+
+.badge-sky {
+  background-color: rgba(0, 185, 241, 0.12);
+  color: #00779e;
+  border: 1px solid rgba(0, 185, 241, 0.3);
+}
+
+/* Custom Scrollbar for Code/JSON Preview */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
