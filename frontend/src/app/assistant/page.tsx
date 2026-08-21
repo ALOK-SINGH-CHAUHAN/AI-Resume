@@ -38,34 +38,25 @@ interface ChatMessage {
 
 function cleanPrimaryAnswer(text: string): string {
   if (!text) return "";
-  
-  // Split at common headers that introduce raw source chunks or debug dumps
-  const splitPatterns = [
-    /##?\s*Deterministic/gi,
-    /##?\s*Retrieved/gi,
-    /##?\s*Evidence/gi,
-    /##?\s*Sources/gi,
-    /RETRIEVED SOURCE EVIDENCE/gi,
-    /DETERMINISTIC MATCH GROUND TRUTH/gi,
-    /DETERMINISTIC MATCH RESULT/gi,
-    /Source Evidence:/gi,
-    /Retrieved Source Evidence:/gi,
-    /\n\s*\[1\]\s+Source:/gi,
-    /\n\s*\[1\]\s+Resume/gi,
-    /\n\s*\[1\]\s+Job/gi,
-    /\n\s*\*\*\[1\]\*\*/gi,
-    /\bSource Citations:/gi
-  ];
-  
-  let primary = text;
-  for (const pattern of splitPatterns) {
-    const parts = primary.split(pattern);
-    if (parts.length > 0) {
-      primary = parts[0];
-    }
-  }
-  
-  let clean = primary
+
+  let clean = text;
+
+  // 1. Strip raw debug/section headers at line starts
+  clean = clean
+    .replace(/^#+\s*(Retrieved|Deterministic|Source Evidence|Evidence & Sources|Evidence Citations|Match Summary)[^\n]*\n?/gim, "")
+    .replace(/###?\s*Deterministic Analysis[^\n]*\n?/gi, "")
+    .replace(/###?\s*Retrieved Resume & Job Evidence:?\n?/gi, "")
+    .replace(/####?\s*Retrieved Resume & Job Evidence:?\n?/gi, "")
+    .replace(/Retrieved Source Evidence Citations:?\n?/gi, "")
+    .replace(/DETERMINISTIC MATCH GROUND TRUTH[^\n]*\n?/gi, "")
+    .replace(/DETERMINISTIC MATCH RESULT[^\n]*\n?/gi, "");
+
+  // 2. Strip raw citations block at the end if present
+  const citationStartRegex = /\n\s*(?:\[1\]\s+Source:|\*\*\[1\]\*\*|Source Evidence:)[\s\S]*$/i;
+  clean = clean.replace(citationStartRegex, "");
+
+  // 3. Unescape markdown escape backslashes and remove 'svg' artifacts
+  clean = clean
     .replace(/\\#/g, "#")
     .replace(/\\\*/g, "*")
     .replace(/\\_/g, "_")
@@ -73,6 +64,17 @@ function cleanPrimaryAnswer(text: string): string {
     .replace(/\\"/g, '"')
     .replace(/\bsvg\b/gi, "")
     .trim();
+
+  // 4. Fallback if cleaning leaves orphan markdown symbols
+  if (clean === "#" || clean === "##" || clean === "###" || clean.length < 2) {
+    clean = text
+      .replace(/^#+\s*/gm, "")
+      .replace(/\\#/g, "#")
+      .replace(/\\\*/g, "*")
+      .replace(/\\_/g, "_")
+      .trim();
+  }
+
   return clean;
 }
 
