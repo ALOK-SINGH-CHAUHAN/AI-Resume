@@ -36,6 +36,24 @@ interface ChatMessage {
   timestamp: string;
 }
 
+function cleanPrimaryAnswer(text: string): string {
+  if (!text) return "";
+  let clean = text
+    .replace(/###\s*Deterministic Analysis[^\n]*/gi, "")
+    .replace(/###\s*Retrieved Resume & Job Evidence:?/gi, "")
+    .replace(/####\s*Retrieved Resume & Job Evidence:?/gi, "")
+    .replace(/Retrieved Source Evidence Citations:?/gi, "")
+    .replace(/DETERMINISTIC MATCH RESULT[^\n]*/gi, "")
+    .replace(/\\#/g, "#")
+    .replace(/\\\*/g, "*")
+    .replace(/\\_/g, "_")
+    .replace(/\\`/g, "`")
+    .replace(/\\"/g, '"')
+    .replace(/\bsvg\b/gi, "")
+    .trim();
+  return clean;
+}
+
 export default function AssistantPage() {
   const [candidates, setCandidates] = useState<CandidateProfile[]>([]);
   const [jobs, setJobs] = useState<JobProfile[]>([]);
@@ -75,7 +93,7 @@ export default function AssistantPage() {
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
       sender: "user",
-      text: query,
+      text: query.trim(),
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     };
 
@@ -258,7 +276,7 @@ export default function AssistantPage() {
                         <span>Recruiter Query</span>
                         <span>{msg.timestamp}</span>
                       </div>
-                      <p className="font-medium text-sm">{msg.text}</p>
+                      <p className="font-medium text-sm text-white">{msg.text}</p>
                     </div>
                   </div>
                 ) : (
@@ -284,72 +302,108 @@ export default function AssistantPage() {
                         </span>
                       </div>
 
-                      {/* Answer Body */}
+                      {/* Primary Answer Body */}
                       <div className="prose prose-sm max-w-none text-ink text-xs leading-relaxed space-y-2 whitespace-pre-line font-mono">
-                        {msg.text ? msg.text.replace(/\\#/g, "#").replace(/\\\*/g, "*").replace(/\\_/g, "_").replace(/\\`/g, "`").replace(/\bsvg\b/gi, "").trim() : ""}
+                        {cleanPrimaryAnswer(msg.text)}
                       </div>
 
-                      {/* Expandable Evidence & Sources Accordion */}
-                      {(msg.responseObj?.evidence_citations && msg.responseObj.evidence_citations.length > 0) || msg.responseObj?.deterministic_match ? (
-                        <div className="pt-3 border-t border-hairline space-y-3">
+                      {/* Accordion 1: Evidence & Sources (Closed by Default) */}
+                      {msg.responseObj?.evidence_citations && msg.responseObj.evidence_citations.length > 0 && (
+                        <div className="pt-3 border-t border-hairline">
                           <details className="group">
-                            <summary className="cursor-pointer text-xs font-semibold text-steel hover:text-ink flex items-center justify-between p-2 rounded-lg bg-canvas/40 border border-hairline transition-all">
-                              <span className="flex items-center gap-1.5 font-mono">
+                            <summary className="cursor-pointer text-xs font-semibold text-steel hover:text-ink flex items-center justify-between p-2.5 rounded-lg bg-canvas/60 border border-hairline transition-all font-mono">
+                              <span className="flex items-center gap-2">
                                 <BookOpen className="w-4 h-4 text-sky-600" />
-                                <span>Evidence & Sources ({msg.responseObj.evidence_citations?.length || 0} Chunks)</span>
+                                <span>Evidence & Sources ({msg.responseObj.evidence_citations.length} Chunks)</span>
                               </span>
                               <span className="text-[10px] text-steel font-mono group-open:rotate-180 transition-transform">▼</span>
                             </summary>
 
-                            <div className="mt-3 space-y-3 pt-2">
-                              {/* Citations List */}
-                              {msg.responseObj?.evidence_citations && msg.responseObj.evidence_citations.length > 0 && (
-                                <div className="grid grid-cols-1 gap-2">
-                                  {msg.responseObj.evidence_citations.map((cit) => (
-                                    <div key={cit.citation_num} className="p-3 rounded-lg bg-canvas/60 border border-hairline space-y-1">
-                                      <div className="flex items-center justify-between text-[11px] font-mono">
-                                        <span className="font-semibold text-ink flex items-center gap-1">
-                                          <span className="w-4 h-4 rounded-full bg-sky-100 text-sky-800 flex items-center justify-center text-[10px] font-bold">
-                                            {cit.citation_num}
-                                          </span>
-                                          <span>{cit.source}</span>
+                            <div className="mt-3 space-y-2 pt-1 pl-1">
+                              <div className="grid grid-cols-1 gap-2">
+                                {msg.responseObj.evidence_citations.map((cit) => (
+                                  <div key={cit.citation_num} className="p-3 rounded-lg bg-canvas border border-hairline space-y-1">
+                                    <div className="flex items-center justify-between text-[11px] font-mono">
+                                      <span className="font-semibold text-ink flex items-center gap-1.5">
+                                        <span className="w-4 h-4 rounded-full bg-sky-100 text-sky-800 flex items-center justify-center text-[10px] font-bold">
+                                          {cit.citation_num}
                                         </span>
-                                        <span className="text-steel bg-canvas px-2 py-0.5 rounded border border-hairline">
-                                          Section: {cit.section}
-                                        </span>
-                                      </div>
-                                      <p className="text-[11px] text-steel italic font-mono pl-5">
-                                        "{cit.snippet}"
-                                      </p>
+                                        <span>{cit.source}</span>
+                                      </span>
+                                      <span className="text-steel bg-canvas px-2 py-0.5 rounded border border-hairline">
+                                        Section: {cit.section}
+                                      </span>
                                     </div>
-                                  ))}
+                                    <p className="text-[11px] text-steel italic font-mono pl-5">
+                                      "{cit.snippet}"
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </details>
+                        </div>
+                      )}
+
+                      {/* Accordion 2: Deterministic Match Breakdown (Closed by Default) */}
+                      {msg.responseObj?.deterministic_match && (
+                        <div className="pt-2">
+                          <details className="group">
+                            <summary className="cursor-pointer text-xs font-semibold text-steel hover:text-ink flex items-center justify-between p-2.5 rounded-lg bg-canvas/60 border border-hairline transition-all font-mono">
+                              <span className="flex items-center gap-2">
+                                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                                <span>Deterministic Match Breakdown ({Math.round(msg.responseObj.deterministic_match.overall_score * 100)}% Overall)</span>
+                              </span>
+                              <span className="text-[10px] text-steel font-mono group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+
+                            <div className="mt-3 p-4 rounded-xl bg-zinc-900 text-zinc-100 space-y-3 text-[11px] font-mono">
+                              <div className="flex justify-between items-center border-b border-zinc-800 pb-2">
+                                <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                                  <ShieldCheck className="w-3.5 h-3.5" />
+                                  <span>Part 2 Ground Truth Match Scores</span>
+                                </span>
+                                <span className="text-zinc-300 font-bold">
+                                  Overall Fit: {Math.round(msg.responseObj.deterministic_match.overall_score * 100)}%
+                                </span>
+                              </div>
+
+                              <div className="grid grid-cols-3 gap-2 text-zinc-300 text-[10px] bg-zinc-800/60 p-2.5 rounded-lg">
+                                <div>Skill Score: <strong className="text-emerald-400">{Math.round(msg.responseObj.deterministic_match.skill_score * 100)}%</strong></div>
+                                <div>Tech Score: <strong className="text-sky-400">{Math.round(msg.responseObj.deterministic_match.tech_score * 100)}%</strong></div>
+                                <div>Semantic Score: <strong className="text-purple-400">{Math.round(msg.responseObj.deterministic_match.semantic_score * 100)}%</strong></div>
+                              </div>
+
+                              {(msg.responseObj.deterministic_match.matched_required?.length ?? 0) > 0 && (
+                                <div>
+                                  <span className="text-zinc-400 block mb-1">Direct Required Matches:</span>
+                                  <span className="text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800 text-[10px]">
+                                    {msg.responseObj.deterministic_match.matched_required?.join(", ")}
+                                  </span>
                                 </div>
                               )}
 
-                              {/* Part 2 Ground Truth Match Summary Badge */}
-                              {msg.responseObj?.deterministic_match && (
-                                <div className="p-3 rounded-xl bg-zinc-900 text-zinc-100 space-y-2 text-[11px] font-mono">
-                                  <div className="flex justify-between items-center">
-                                    <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                                      <ShieldCheck className="w-3.5 h-3.5" />
-                                      <span>Part 2 Deterministic Match Summary (Ground Truth)</span>
-                                    </span>
-                                    <span className="text-zinc-400">
-                                      Score: {Math.round(msg.responseObj.deterministic_match.overall_score * 100)}%
-                                    </span>
-                                  </div>
+                              {(msg.responseObj.deterministic_match.related_competencies?.length ?? 0) > 0 && (
+                                <div>
+                                  <span className="text-zinc-400 block mb-1">Related Competencies (0.5× Credit):</span>
+                                  <span className="text-sky-300 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-800 text-[10px]">
+                                    {msg.responseObj.deterministic_match.related_competencies?.join(", ")}
+                                  </span>
+                                </div>
+                              )}
 
-                                  <div className="flex flex-wrap gap-4 text-zinc-300 text-[10px]">
-                                    <span>Skill Score: {Math.round(msg.responseObj.deterministic_match.skill_score * 100)}%</span>
-                                    <span>Tech Score: {Math.round(msg.responseObj.deterministic_match.tech_score * 100)}%</span>
-                                    <span>Semantic Score: {Math.round(msg.responseObj.deterministic_match.semantic_score * 100)}%</span>
-                                  </div>
+                              {(msg.responseObj.deterministic_match.hard_gaps?.length ?? 0) > 0 && (
+                                <div>
+                                  <span className="text-zinc-400 block mb-1">Hard Gaps (Missing Requirements):</span>
+                                  <span className="text-rose-300 bg-rose-950/60 px-2 py-0.5 rounded border border-rose-800 text-[10px]">
+                                    {msg.responseObj.deterministic_match.hard_gaps?.join(", ")}
+                                  </span>
                                 </div>
                               )}
                             </div>
                           </details>
                         </div>
-                      ) : null}
+                      )}
                     </div>
                   </div>
                 )}
