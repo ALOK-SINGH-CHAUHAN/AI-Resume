@@ -82,5 +82,12 @@
   "Gradio",
   "SentenceTransformers",
   "XGBoost",
-  "LightGBM"
+  "LightGBM",
+  "Splunk",
+  "Wazuh",
+  "Burp Suite",
+  "Nmap",
+  "Wireshark",
+  "Snort",
+  "Metasploit"
 ]

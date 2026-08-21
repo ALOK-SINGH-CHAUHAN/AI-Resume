@@ -60,5 +60,16 @@
   "Security Engineering",
   "Site Reliability Engineering",
   "Platform Engineering",
-  "Infrastructure as Code"
+  "Infrastructure as Code",
+  "Cloud Security",
+  "Application Security",
+  "Threat Detection",
+  "Vulnerability Assessment",
+  "Penetration Testing",
+  "Incident Response",
+  "Security Monitoring",
+  "Security Automation",
+  "SIEM",
+  "IAM",
+  "OWASP"
 ]

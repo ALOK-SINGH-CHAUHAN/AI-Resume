@@ -470,7 +470,7 @@ export default function AssistantPage() {
           </div>
 
           <div className="flex justify-between items-center text-[10px] text-steel font-mono">
-            <span>Press Enter to send · Grounded in ChromaDB & Llama 3:8B</span>
+            <span>Grounded in ChromaDB & Llama 3:8B</span>
             {messages.length > 0 && (
               <button
                 onClick={() => setMessages([])}

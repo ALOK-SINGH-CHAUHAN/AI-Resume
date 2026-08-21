@@ -2,18 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { checkApiHealth } from "@/lib/api";
-import { Users, Briefcase, FileText, ArrowRight, Server, Bot } from "lucide-react";
+import { Users, Briefcase, FileText, ArrowRight, Bot } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [apiStatus, setApiStatus] = useState<"online" | "connecting" | "offline">("connecting");
-
-  useEffect(() => {
-    setApiStatus("connecting");
-    checkApiHealth().then((status) => setApiStatus(status));
-  }, [pathname]);
 
   const navItems = [
     { name: "Extract Profile", href: "/extract", icon: FileText },
@@ -24,12 +16,6 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-marble border-b border-hairline">
-      {/* Top Banner — Subtle & Professional */}
-      <div className="bg-zinc-900 text-zinc-300 text-xs font-mono py-1.5 px-4 text-center flex items-center justify-center gap-2">
-        <Server className="w-3.5 h-3.5 text-emerald-400" />
-        <span>Recruitment Intelligence · Local NLP · Deterministic Matching</span>
-      </div>
-
       {/* Primary Navigation Bar */}
       <div className="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand Logo — Clean Monochrome */}
@@ -62,27 +48,8 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Dynamic Backend Status Indicator */}
+        {/* Action Button */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 text-xs text-steel bg-zinc-50 border border-hairline px-3 py-1.5 rounded-full font-mono">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                apiStatus === "online"
-                  ? "bg-emerald-500"
-                  : apiStatus === "connecting"
-                  ? "bg-amber-400 animate-pulse"
-                  : "bg-rose-500"
-              }`}
-            />
-            <span>
-              {apiStatus === "online"
-                ? "Backend Online"
-                : apiStatus === "connecting"
-                ? "Backend Connecting..."
-                : "Backend Offline"}
-            </span>
-          </div>
-
           <Link href="/extract" className="btn-primary flex items-center gap-1.5 text-xs">
             <span>New Extraction</span>
             <ArrowRight className="w-3.5 h-3.5" />

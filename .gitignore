@@ -10,6 +10,6 @@ backend/app/data/chroma_db/
 backend/app/data/test_chroma_db/
 backend/app/data/test_chroma_db_quality/
 backend/app/data/test_chroma_db_final/
-backend/app/data/test_deep_chroma_db/
-backend/app/data/test_deep_chroma_db_final/
+backend/app/data/*chroma*/
+backend/app/data/*chroma/
 .DS_Store
