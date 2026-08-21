@@ -962,21 +962,24 @@ class RAGRecruiterAssistant:
             with urllib.request.urlopen(req, timeout=3) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 models = [m.get("name", "") for m in data.get("models", [])]
-                for target in ["llama3:8b", "llama3.2:latest", "llama3.2", "llama3:latest", "llama3"]:
-                    if any(target in m for m in models):
-                        return target
+                for target in ["llama3.2:1b", "llama3:8b", "llama3.2:latest", "llama3.2", "llama3:latest", "llama3"]:
+                    for m in models:
+                        if target == m or target in m:
+                            return m
                 gen_models = [m for m in models if "embed" not in m.lower()]
                 if gen_models:
                     return gen_models[0]
-        except Exception:
-            pass
+        except Exception as ex:
+            logger.warning("Failed to query Ollama tags: %s", ex)
         return None
 
     def _call_ollama(self, prompt: str, system_prompt: str) -> Optional[str]:
         """Call local Ollama API with constrained generation prompt."""
         active_model = self._get_active_model()
         if not active_model:
+            logger.info("Ollama check: No active Ollama model found.")
             return None
+        logger.info("Calling Ollama local API at %s/api/chat with model %s...", self.ollama_url, active_model)
         try:
             url = f"{self.ollama_url}/api/chat"
             payload = json.dumps({
@@ -990,13 +993,14 @@ class RAGRecruiterAssistant:
             }).encode("utf-8")
 
             req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=12) as response:
+            with urllib.request.urlopen(req, timeout=45) as response:
                 data = json.loads(response.read().decode("utf-8"))
                 msg = data.get("message", {}).get("content", "")
                 if msg and msg.strip():
+                    logger.info("Ollama execution succeeded with model %s!", active_model)
                     return msg.strip()
-        except Exception:
-            pass
+        except Exception as ex:
+            logger.error("Ollama API call error: %s", ex)
         return None
 
     def _classify_question_intent(self, question: str, context: ConversationContext) -> str:
