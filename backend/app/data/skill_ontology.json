@@ -1,0 +1,97 @@
+{
+  "Artificial Intelligence": {
+    "children": ["Machine Learning", "Deep Learning", "Computer Vision", "Natural Language Processing", "Reinforcement Learning", "Generative AI", "AI Agents"],
+    "parent": null,
+    "domain": "AI/ML"
+  },
+  "Machine Learning": {
+    "children": ["Deep Learning", "Feature Engineering", "Model Evaluation", "Transfer Learning", "Recommendation Systems", "Anomaly Detection", "Time Series Analysis"],
+    "parent": "Artificial Intelligence",
+    "domain": "AI/ML"
+  },
+  "Deep Learning": {
+    "children": ["Neural Networks", "CNN", "RNN", "LSTM", "Transformer"],
+    "parent": "Machine Learning",
+    "domain": "AI/ML"
+  },
+  "Natural Language Processing": {
+    "children": ["Information Retrieval", "Semantic Search", "Embeddings", "Generative AI", "RAG"],
+    "parent": "Artificial Intelligence",
+    "domain": "AI/ML"
+  },
+  "Generative AI": {
+    "children": ["LLM Fine-tuning", "Prompt Engineering", "RAG", "AI Agents", "LangChain", "LangGraph", "LlamaIndex"],
+    "parent": "Natural Language Processing",
+    "domain": "AI/ML"
+  },
+  "LangChain": {
+    "children": ["LangGraph", "LlamaIndex"],
+    "parent": "Generative AI",
+    "domain": "AI/ML"
+  },
+  "LangGraph": {
+    "children": [],
+    "parent": "LangChain",
+    "domain": "AI/ML"
+  },
+  "RAG": {
+    "children": ["Vector Search", "Embeddings"],
+    "parent": "Generative AI",
+    "domain": "AI/ML"
+  },
+  "Vector Search": {
+    "children": [],
+    "parent": "RAG",
+    "domain": "AI/ML"
+  },
+  "Embeddings": {
+    "children": [],
+    "parent": "RAG",
+    "domain": "AI/ML"
+  },
+  "AI Agents": {
+    "children": ["Multi-agent Systems"],
+    "parent": "Generative AI",
+    "domain": "AI/ML"
+  },
+  "Computer Vision": {
+    "children": ["CNN", "OpenCV"],
+    "parent": "Artificial Intelligence",
+    "domain": "AI/ML"
+  },
+  "MLOps": {
+    "children": ["Model Deployment", "Data Pipelines", "CI/CD"],
+    "parent": "Machine Learning",
+    "domain": "AI/ML"
+  },
+  "DevOps": {
+    "children": ["CI/CD", "Infrastructure as Code", "Site Reliability Engineering"],
+    "parent": null,
+    "domain": "Infrastructure"
+  },
+  "Cloud Computing": {
+    "children": [],
+    "parent": "DevOps",
+    "domain": "Infrastructure"
+  },
+  "Backend Development": {
+    "children": ["REST APIs", "API Design", "Database Management", "Microservices"],
+    "parent": "Software Engineering",
+    "domain": "Engineering"
+  },
+  "Software Engineering": {
+    "children": ["Backend Development", "Frontend Development", "Full Stack Development", "System Architecture"],
+    "parent": null,
+    "domain": "Engineering"
+  },
+  "Data Science": {
+    "children": ["Data Analysis", "Data Visualization", "Machine Learning", "Feature Engineering"],
+    "parent": null,
+    "domain": "Data"
+  },
+  "Data Engineering": {
+    "children": ["Data Pipelines", "Database Management", "Big Data"],
+    "parent": null,
+    "domain": "Data"
+  }
+}

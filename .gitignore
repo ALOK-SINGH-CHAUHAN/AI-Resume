@@ -1,0 +1,15 @@
+venv/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+__pycache__/
+*.pyc
+*.db
+backend/app/sqlite.db
+backend/app/data/chroma_db/
+backend/app/data/test_chroma_db/
+backend/app/data/test_chroma_db_quality/
+backend/app/data/test_chroma_db_final/
+backend/app/data/test_deep_chroma_db/
+backend/app/data/test_deep_chroma_db_final/
+.DS_Store

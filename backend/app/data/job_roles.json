@@ -1,0 +1,302 @@
+[
+  {
+    "id": "rag_engineer",
+    "role_name": "RAG Engineer",
+    "domain": "AI/ML > LLM Systems",
+    "required_skills": ["RAG", "Retrieval Augmented Generation", "Embeddings", "Vector Search"],
+    "preferred_skills": ["Semantic Search", "Information Retrieval", "Natural Language Processing"],
+    "required_technologies": ["LangChain", "ChromaDB"],
+    "preferred_technologies": ["Pinecone", "Weaviate", "Milvus", "Qdrant", "FAISS", "LlamaIndex", "LangGraph"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "llm_engineer",
+    "role_name": "LLM Engineer",
+    "domain": "AI/ML > LLM Systems",
+    "required_skills": ["Generative AI", "Natural Language Processing", "LLM Fine-tuning"],
+    "preferred_skills": ["RAG", "Embeddings", "Prompt Engineering"],
+    "required_technologies": ["HuggingFace", "PyTorch"],
+    "preferred_technologies": ["LangChain", "LlamaIndex", "Ollama", "TensorFlow"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "ai_agent_engineer",
+    "role_name": "AI Agent Engineer",
+    "domain": "AI/ML > LLM Systems",
+    "required_skills": ["AI Agents", "Multi-agent Systems", "Generative AI"],
+    "preferred_skills": ["RAG", "Embeddings", "Natural Language Processing"],
+    "required_technologies": ["LangGraph", "LangChain"],
+    "preferred_technologies": ["FastAPI", "ChromaDB", "Pinecone", "LlamaIndex"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "applied_ai_engineer",
+    "role_name": "Applied AI Engineer",
+    "domain": "AI/ML > Applied AI",
+    "required_skills": ["Artificial Intelligence", "Machine Learning", "Model Deployment"],
+    "preferred_skills": ["Natural Language Processing", "Computer Vision", "RAG"],
+    "required_technologies": ["PyTorch", "FastAPI"],
+    "preferred_technologies": ["TensorFlow", "Docker", "HuggingFace"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "ml_engineer",
+    "role_name": "Machine Learning Engineer",
+    "domain": "AI/ML > ML Engineering",
+    "required_skills": ["Machine Learning", "Deep Learning", "Model Deployment"],
+    "preferred_skills": ["MLOps", "Feature Engineering", "Model Evaluation"],
+    "required_technologies": ["PyTorch", "scikit-learn"],
+    "preferred_technologies": ["TensorFlow", "MLflow", "Docker", "AWS"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "ml_systems_engineer",
+    "role_name": "ML Systems Engineer",
+    "domain": "AI/ML > ML Engineering",
+    "required_skills": ["Machine Learning", "MLOps", "System Architecture", "Model Deployment"],
+    "preferred_skills": ["Distributed Systems", "Data Pipelines"],
+    "required_technologies": ["MLflow", "Docker", "Kubernetes"],
+    "preferred_technologies": ["Airflow", "Spark", "AWS", "Kafka"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "mlops_engineer",
+    "role_name": "MLOps Engineer",
+    "domain": "AI/ML > AI Infrastructure",
+    "required_skills": ["MLOps", "CI/CD", "Model Deployment", "Cloud Computing"],
+    "preferred_skills": ["Machine Learning", "Distributed Systems"],
+    "required_technologies": ["MLflow", "Docker", "Kubernetes"],
+    "preferred_technologies": ["Airflow", "DVC", "Terraform", "AWS", "GCP"],
+    "languages": ["Python", "Bash"]
+  },
+  {
+    "id": "ai_platform_engineer",
+    "role_name": "AI Platform Engineer",
+    "domain": "AI/ML > AI Infrastructure",
+    "required_skills": ["Platform Engineering", "MLOps", "Cloud Computing", "Machine Learning"],
+    "preferred_skills": ["System Architecture", "Distributed Systems"],
+    "required_technologies": ["Kubernetes", "Docker", "AWS"],
+    "preferred_technologies": ["MLflow", "Airflow", "Terraform", "Grafana"],
+    "languages": ["Python", "Bash", "Go"]
+  },
+  {
+    "id": "ai_research_engineer",
+    "role_name": "AI Research Engineer",
+    "domain": "AI/ML > Research",
+    "required_skills": ["Machine Learning", "Deep Learning", "Neural Networks", "Reinforcement Learning"],
+    "preferred_skills": ["Transfer Learning", "Generative AI", "Computer Vision"],
+    "required_technologies": ["PyTorch", "HuggingFace"],
+    "preferred_technologies": ["Weights & Biases", "Jupyter", "TensorFlow"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "computer_vision_engineer",
+    "role_name": "Computer Vision Engineer",
+    "domain": "AI/ML > Computer Vision",
+    "required_skills": ["Computer Vision", "Deep Learning"],
+    "preferred_skills": ["Machine Learning", "Neural Networks"],
+    "required_technologies": ["CNN", "OpenCV", "PyTorch"],
+    "preferred_technologies": ["TensorFlow", "LSTM"],
+    "languages": ["Python", "C++"]
+  },
+  {
+    "id": "nlp_engineer",
+    "role_name": "NLP Engineer",
+    "domain": "AI/ML > NLP",
+    "required_skills": ["Natural Language Processing", "Machine Learning"],
+    "preferred_skills": ["Deep Learning", "Information Retrieval", "Embeddings"],
+    "required_technologies": ["spaCy", "HuggingFace"],
+    "preferred_technologies": ["BERT", "Transformer", "PyTorch", "LSTM", "FAISS"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "data_scientist",
+    "role_name": "Data Scientist",
+    "domain": "Data",
+    "required_skills": ["Data Science", "Data Analysis", "Machine Learning", "Data Visualization"],
+    "preferred_skills": ["Feature Engineering", "Model Evaluation", "Time Series Analysis"],
+    "required_technologies": ["Pandas", "NumPy", "scikit-learn"],
+    "preferred_technologies": ["TensorFlow", "XGBoost", "LightGBM", "Jupyter"],
+    "languages": ["Python", "R", "SQL"]
+  },
+  {
+    "id": "data_engineer",
+    "role_name": "Data Engineer",
+    "domain": "Data",
+    "required_skills": ["Data Engineering", "Data Pipelines", "Database Management"],
+    "preferred_skills": ["Big Data", "Cloud Computing", "System Architecture"],
+    "required_technologies": ["Spark", "Airflow", "PostgreSQL"],
+    "preferred_technologies": ["Kafka", "dbt", "AWS", "GCP", "Dagster", "Prefect"],
+    "languages": ["Python", "SQL", "Scala"]
+  },
+  {
+    "id": "analytics_engineer",
+    "role_name": "Analytics Engineer",
+    "domain": "Data",
+    "required_skills": ["Data Analysis", "Data Visualization", "Database Management"],
+    "preferred_skills": ["Data Pipelines", "Data Science"],
+    "required_technologies": ["dbt", "PostgreSQL"],
+    "preferred_technologies": ["Spark", "Airflow", "MongoDB"],
+    "languages": ["SQL", "Python"]
+  },
+  {
+    "id": "ai_backend_engineer",
+    "role_name": "AI Backend Engineer",
+    "domain": "AI/ML > Applied AI",
+    "required_skills": ["Backend Development", "REST APIs", "Machine Learning"],
+    "preferred_skills": ["RAG", "Embeddings", "Generative AI", "System Architecture"],
+    "required_technologies": ["FastAPI", "Docker"],
+    "preferred_technologies": ["LangChain", "ChromaDB", "PostgreSQL", "Redis", "Kubernetes"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "backend_developer",
+    "role_name": "Backend Developer",
+    "domain": "Engineering > Backend",
+    "required_skills": ["Backend Development", "REST APIs", "Database Management"],
+    "preferred_skills": ["Microservices", "System Architecture", "API Design"],
+    "required_technologies": ["FastAPI", "PostgreSQL"],
+    "preferred_technologies": ["Docker", "Redis", "Node.js", "Kafka"],
+    "languages": ["Python", "JavaScript", "TypeScript", "SQL"]
+  },
+  {
+    "id": "python_backend_engineer",
+    "role_name": "Python Backend Engineer",
+    "domain": "Engineering > Backend",
+    "required_skills": ["Backend Development", "REST APIs", "Software Engineering"],
+    "preferred_skills": ["Database Management", "System Architecture"],
+    "required_technologies": ["FastAPI", "Docker", "PostgreSQL"],
+    "preferred_technologies": ["Celery", "Redis", "Kubernetes", "Django"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "frontend_developer",
+    "role_name": "Frontend Developer",
+    "domain": "Engineering > Frontend",
+    "required_skills": ["Frontend Development", "Web Development"],
+    "preferred_skills": ["REST APIs", "Performance Optimization"],
+    "required_technologies": ["React", "Next.js", "Tailwind CSS"],
+    "preferred_technologies": ["TypeScript"],
+    "languages": ["JavaScript", "TypeScript", "HTML", "CSS"]
+  },
+  {
+    "id": "fullstack_developer",
+    "role_name": "Full Stack Developer",
+    "domain": "Engineering > Full Stack",
+    "required_skills": ["Full Stack Development", "Frontend Development", "Backend Development", "REST APIs"],
+    "preferred_skills": ["Database Management", "System Design"],
+    "required_technologies": ["React", "Node.js", "PostgreSQL"],
+    "preferred_technologies": ["Next.js", "Docker", "MongoDB", "TypeScript"],
+    "languages": ["JavaScript", "TypeScript", "Python", "SQL"]
+  },
+  {
+    "id": "devops_engineer",
+    "role_name": "DevOps Engineer",
+    "domain": "Engineering > Infrastructure",
+    "required_skills": ["DevOps", "CI/CD", "Cloud Computing"],
+    "preferred_skills": ["Microservices", "System Architecture", "Infrastructure as Code"],
+    "required_technologies": ["Docker", "Kubernetes", "AWS"],
+    "preferred_technologies": ["Jenkins", "Terraform", "Ansible", "GCP", "Git"],
+    "languages": ["Bash", "Python"]
+  },
+  {
+    "id": "platform_engineer",
+    "role_name": "Platform Engineer",
+    "domain": "Engineering > Infrastructure",
+    "required_skills": ["Platform Engineering", "Cloud Computing", "Infrastructure as Code", "CI/CD"],
+    "preferred_skills": ["Site Reliability Engineering", "System Architecture"],
+    "required_technologies": ["Kubernetes", "Terraform", "Docker"],
+    "preferred_technologies": ["Prometheus", "Grafana", "Ansible", "AWS", "GCP"],
+    "languages": ["Go", "Python", "Bash"]
+  },
+  {
+    "id": "sre",
+    "role_name": "Site Reliability Engineer",
+    "domain": "Engineering > Infrastructure",
+    "required_skills": ["Site Reliability Engineering", "Cloud Computing", "System Architecture"],
+    "preferred_skills": ["DevOps", "Performance Optimization", "CI/CD"],
+    "required_technologies": ["Kubernetes", "Prometheus", "Docker"],
+    "preferred_technologies": ["Grafana", "AWS", "Terraform", "Nginx"],
+    "languages": ["Python", "Go", "Bash"]
+  },
+  {
+    "id": "ai_solutions_engineer",
+    "role_name": "AI Solutions Engineer",
+    "domain": "AI/ML > Applied AI",
+    "required_skills": ["Artificial Intelligence", "Machine Learning", "REST APIs"],
+    "preferred_skills": ["Generative AI", "RAG", "System Architecture"],
+    "required_technologies": ["FastAPI", "Docker"],
+    "preferred_technologies": ["LangChain", "HuggingFace", "AWS", "PostgreSQL"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "ml_infrastructure_engineer",
+    "role_name": "ML Infrastructure Engineer",
+    "domain": "AI/ML > AI Infrastructure",
+    "required_skills": ["MLOps", "Cloud Computing", "Distributed Systems", "Infrastructure as Code"],
+    "preferred_skills": ["Machine Learning", "Model Deployment"],
+    "required_technologies": ["Kubernetes", "Docker", "AWS"],
+    "preferred_technologies": ["Terraform", "Spark", "MLflow", "Airflow"],
+    "languages": ["Python", "Bash", "Go"]
+  },
+  {
+    "id": "deep_learning_engineer",
+    "role_name": "Deep Learning Engineer",
+    "domain": "AI/ML > ML Engineering",
+    "required_skills": ["Deep Learning", "Neural Networks", "Machine Learning"],
+    "preferred_skills": ["Transfer Learning", "Computer Vision", "Natural Language Processing"],
+    "required_technologies": ["PyTorch", "TensorFlow"],
+    "preferred_technologies": ["CUDA", "HuggingFace", "Weights & Biases", "CNN", "Transformer"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "recommendation_engineer",
+    "role_name": "Recommendation Systems Engineer",
+    "domain": "AI/ML > Applied AI",
+    "required_skills": ["Recommendation Systems", "Machine Learning", "Data Analysis"],
+    "preferred_skills": ["Deep Learning", "Embeddings", "Feature Engineering"],
+    "required_technologies": ["PyTorch", "scikit-learn"],
+    "preferred_technologies": ["Spark", "Kafka", "Redis", "PostgreSQL"],
+    "languages": ["Python", "SQL"]
+  },
+  {
+    "id": "search_engineer",
+    "role_name": "Search Engineer",
+    "domain": "AI/ML > NLP",
+    "required_skills": ["Information Retrieval", "Semantic Search", "Vector Search"],
+    "preferred_skills": ["Natural Language Processing", "Embeddings", "Machine Learning"],
+    "required_technologies": ["Elasticsearch", "FAISS"],
+    "preferred_technologies": ["Pinecone", "Weaviate", "SentenceTransformers", "spaCy"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "security_engineer",
+    "role_name": "Security Engineer",
+    "domain": "Engineering > Security",
+    "required_skills": ["Cybersecurity", "Security Engineering", "System Architecture"],
+    "preferred_skills": ["Cloud Computing", "DevOps", "Backend Development"],
+    "required_technologies": ["AWS", "Docker"],
+    "preferred_technologies": ["Kubernetes", "Terraform", "GCP"],
+    "languages": ["Python", "Go", "Bash"]
+  },
+  {
+    "id": "ai_engineer",
+    "role_name": "AI Engineer",
+    "domain": "AI/ML > Applied AI",
+    "required_skills": ["Artificial Intelligence", "Machine Learning"],
+    "preferred_skills": ["Deep Learning", "Natural Language Processing", "Generative AI"],
+    "required_technologies": ["PyTorch", "TensorFlow"],
+    "preferred_technologies": ["BERT", "GPT", "Transformer", "HuggingFace"],
+    "languages": ["Python"]
+  },
+  {
+    "id": "generative_ai_engineer",
+    "role_name": "Generative AI Engineer",
+    "domain": "AI/ML > LLM Systems",
+    "required_skills": ["Generative AI", "Prompt Engineering", "LLM Fine-tuning"],
+    "preferred_skills": ["RAG", "AI Agents", "Embeddings", "Natural Language Processing"],
+    "required_technologies": ["HuggingFace", "LangChain"],
+    "preferred_technologies": ["LangGraph", "ChromaDB", "Pinecone", "FastAPI", "Ollama"],
+    "languages": ["Python"]
+  }
+]
